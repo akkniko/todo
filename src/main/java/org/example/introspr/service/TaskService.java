@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -25,7 +24,7 @@ public class TaskService {
                 orElseThrow(() -> new RuntimeException("tasks with id " + id +" not found"));
     }
 
-    public Task getTaskByCreatedTime(LocalDateTime time){
-        return repository.findByCreatedTime(time);
-    }
+//    public Task getTaskByCreatedTime(LocalDateTime time){
+//        return repository.findByCreatedAt(time);
+//    }
 }

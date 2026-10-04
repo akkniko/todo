@@ -2,10 +2,8 @@ package org.example.introspr.controller;
 
 import org.example.introspr.model.Task;
 import org.example.introspr.service.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,11 +18,12 @@ public class TaskController {
     @GetMapping()
     public List<Task> getAllTasks(){
         return service.getAllTasks();
-    };
+    }
 
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id){
         return service.getTaskById(id);
     }
 
+    
 }
