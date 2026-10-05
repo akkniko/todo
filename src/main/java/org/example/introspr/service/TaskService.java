@@ -1,4 +1,5 @@
 package org.example.introspr.service;
+import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,15 @@ public class TaskService {
                 orElseThrow(() -> new RuntimeException("tasks with id " + id +" not found"));
     }
 
-//    public Task getTaskByCreatedTime(LocalDateTime time){
-//        return repository.findByCreatedAt(time);
-//    }
+    public Task getTaskByCreatedTime(LocalDateTime time) {
+        return repository.findByCreatedAt(time);
+    }
+
+    public Task createTask(createTaskRequest task){
+        Task newTask = new Task();
+        newTask.setTitle(newTask.getTitle());
+        newTask.setCompleted(false);
+
+        return repository.save(newTask);
+    }
 }

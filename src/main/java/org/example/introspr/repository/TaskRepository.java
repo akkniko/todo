@@ -1,5 +1,6 @@
 package org.example.introspr.repository;
 
+import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,5 +13,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByCompleted(boolean completed);
     List<Task> findByTitle(String key);
     void deleteByCompleted(boolean completed);
-//    Task findByCreatedAt(LocalDateTime time);
+    Task findByCreatedAt(LocalDateTime time);
+    Task createNewTask(createTaskRequest t);
 }
