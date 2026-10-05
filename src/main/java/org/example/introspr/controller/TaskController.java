@@ -34,12 +34,4 @@ public class TaskController {
         return ResponseEntity.status(201).body(newTask);
     }
 
-
-
-
-//    @PutMapping()
-//    public String updateTask(@PathVariable Task task, @PathParam() ){
-//
-//    }
-
 }

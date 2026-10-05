@@ -14,5 +14,4 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByTitle(String key);
     void deleteByCompleted(boolean completed);
     Task findByCreatedAt(LocalDateTime time);
-    Task createNewTask(createTaskRequest t);
 }
