@@ -1,5 +1,6 @@
 package org.example.introspr.repository;
 
+import jakarta.transaction.Transactional;
 import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,8 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByCompleted(boolean completed);
     List<Task> findByTitle(String key);
+
+    @Transactional
     void deleteByCompleted(boolean completed);
     Task findByCreatedAt(LocalDateTime time);
 }
