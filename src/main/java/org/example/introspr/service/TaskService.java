@@ -2,7 +2,9 @@ package org.example.introspr.service;
 import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,7 +24,9 @@ public class TaskService {
 
     public Task getTaskById(Long id){
         return repository.findById(id).
-                orElseThrow(() -> new RuntimeException("tasks with id " + id +" not found"));
+                orElseThrow(() ->
+                    new ResponseStatusException(HttpStatus.NOT_FOUND, "Task with id " + id + " not found")
+                );
     }
 
     public Task getTaskByCreatedTime(LocalDateTime time) {
@@ -31,7 +35,7 @@ public class TaskService {
 
     public Task createTask(createTaskRequest task){
         Task newTask = new Task();
-        newTask.setTitle(newTask.getTitle());
+        newTask.setTitle(task.getTitle());
         newTask.setCompleted(false);
 
         return repository.save(newTask);

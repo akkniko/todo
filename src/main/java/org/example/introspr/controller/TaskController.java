@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -28,11 +29,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id){
-        Task k =  service.getTaskById(id);
-        if(k == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        return k;
+        return service.getTaskById(id);
     }
 
 
