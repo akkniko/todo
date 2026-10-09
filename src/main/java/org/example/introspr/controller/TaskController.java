@@ -1,6 +1,7 @@
 package org.example.introspr.controller;
 
 import org.example.introspr.dto.createTaskRequest;
+import org.example.introspr.dto.patchTaskRequest;
 import org.example.introspr.dto.updateTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
@@ -40,5 +41,10 @@ public class TaskController {
     @PutMapping("/{id}")
     public Task updateTask(@RequestBody updateTaskRequest dto, @PathVariable Long id){
         return service.updateTask(dto, id);
+    }
+
+    @PatchMapping("/{id}")
+    public Task partialUpdateTask(@RequestBody patchTaskRequest dto, @PathVariable Long id){
+        return service.patchTask(dto, id);
     }
 }

@@ -2,6 +2,7 @@ package org.example.introspr.service;
 import jakarta.annotation.Nonnull;
 import org.apache.coyote.BadRequestException;
 import org.example.introspr.dto.createTaskRequest;
+import org.example.introspr.dto.patchTaskRequest;
 import org.example.introspr.dto.updateTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
@@ -48,5 +49,20 @@ public class TaskService {
       t.setTitle(task.title());
       t.setCompleted(task.completed());
       return repository.save(t);
+    }
+
+
+    public Task patchTask(patchTaskRequest task, Long id){
+        Task t = getTaskById(id);
+
+        if(task.title() != null){
+            t.setTitle(task.title());
+        }
+
+        if(task.completed()!=t.isCompleted()){
+            t.setCompleted(task.completed());
+        }
+
+        return repository.save(t);
     }
 }
