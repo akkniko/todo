@@ -1,4 +1,6 @@
 package org.example.introspr.service;
+import jakarta.annotation.Nonnull;
+import org.apache.coyote.BadRequestException;
 import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
@@ -29,15 +31,21 @@ public class TaskService {
                 );
     }
 
-    public Task getTaskByCreatedTime(LocalDateTime time) {
-        return repository.findByCreatedAt(time);
-    }
-
     public Task createTask(createTaskRequest task){
         Task newTask = new Task();
         newTask.setTitle(task.getTitle());
         newTask.setCompleted(false);
 
         return repository.save(newTask);
+    }
+    public Task updateTask(createTaskRequest task, Long id){
+      if(task.getTitle() == null || task.getTitle().isBlank()){
+          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "task's title must be non-empty");
+      }
+
+      Task t = getTaskById(id);
+      t.setTitle(task.getTitle());
+      t.setCompleted(task.isCompleted());
+      return repository.save(t);
     }
 }
