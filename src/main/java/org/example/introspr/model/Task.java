@@ -16,9 +16,9 @@ public class Task{
 
     private String title;
     private boolean completed;
-    private final LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Task(){};
+    public Task(){}
 
     public Task(String title){
         this.title = title;

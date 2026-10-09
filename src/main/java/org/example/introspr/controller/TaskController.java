@@ -4,11 +4,8 @@ import org.example.introspr.dto.createTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
 import org.example.introspr.service.TaskService;
-import org.jspecify.annotations.NonNull;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,21 +37,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@RequestBody @NonNull createTaskRequest dto, @RequestParam Long id){
-        Task t = service.getTaskById(id);
-
-        if(dto.getTitle()!=null) {
-            t.setTitle(dto.getTitle());
-        }
-        
-        t.setCompleted(false);
-//        TaskRepository.save(id);
-
-        return t;
-
+    public Task updateTask(@RequestBody createTaskRequest dto, @PathVariable Long id){
+        return service.updateTask(dto, id);
     }
-
-
-
-
 }
