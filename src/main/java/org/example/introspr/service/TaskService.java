@@ -2,6 +2,7 @@ package org.example.introspr.service;
 import jakarta.annotation.Nonnull;
 import org.apache.coyote.BadRequestException;
 import org.example.introspr.dto.createTaskRequest;
+import org.example.introspr.dto.updateTaskRequest;
 import org.example.introspr.model.Task;
 import org.example.introspr.repository.TaskRepository;
 import org.springframework.http.HttpStatus;
@@ -38,14 +39,14 @@ public class TaskService {
 
         return repository.save(newTask);
     }
-    public Task updateTask(createTaskRequest task, Long id){
-      if(task.getTitle() == null || task.getTitle().isBlank()){
+    public Task updateTask(updateTaskRequest task, Long id){
+      if(task.title() == null || task.title().isBlank()){
           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "task's title must be non-empty");
       }
 
       Task t = getTaskById(id);
-      t.setTitle(task.getTitle());
-      t.setCompleted(task.isCompleted());
+      t.setTitle(task.title());
+      t.setCompleted(task.completed());
       return repository.save(t);
     }
 }
