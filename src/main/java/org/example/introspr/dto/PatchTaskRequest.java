@@ -1,4 +1,4 @@
 package org.example.introspr.dto;
 
-public class PatchTaskRequest {
-}
+public record PatchTaskRequest(String title, Boolean completed){}
+
